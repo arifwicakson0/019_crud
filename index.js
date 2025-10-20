@@ -16,9 +16,9 @@ app.listen(PORT, () => {
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'hpx128535',
+    password: '123456789',
     database: 'biodata',
-    port: 3308
+    port: 3307
 });
 
 db.connect((err) => {
@@ -30,7 +30,7 @@ db.connect((err) => {
 });
 
 app.get('/api/users', (req, res) => {
-  db.query('SELECT * FROM users', (err, results) => {
+  db.query('SELECT * FROM mahasiswa', (err, results) => {
     if (err) {
       console.error('Error executing query: ' + err.stack);
       res.status(500).send('Error fetching users');
@@ -48,7 +48,7 @@ app.post('/api/users', (req, res) => {
     }
 
     db.query(
-        "INSERT INTO users (nama, nim, kelas) VALUES (?, ?, ?)",
+        "INSERT INTO mahasiswa (nama, nim, kelas) VALUES (?, ?, ?)",
         [nama, nim, kelas],
         (err, results) => {
             if (err) {
